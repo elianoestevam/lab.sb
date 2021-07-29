@@ -1,0 +1,35 @@
+server:
+    port: 8180
+
+spring:
+    application:
+        name: lab.sb.gateway
+
+eureka:
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+    instance:
+        lease-expiration-duration-in-seconds: 1
+        lease-renewal-interval-in-seconds: 2
+        preferIpAddress: true
+ribbon:
+    ConnectTimeout: 30000
+    ReadTimeout: 30000
+    eager-load:
+        enabled: true
+
+zuul:
+    ignored-services: '*'
+    ribbon-isolation-strategy: thread
+    routes:
+        lab-auth-api:
+            path: /lab-auth-api/**
+            serviceId: lab.sb.auth
+            stripPrefix: false
+        lab-usuario-api:
+            path: /lab-usuario-api/**
+            serviceId: lab.sb.usuario
+            stripPrefix: false            
+    thread-pool:
+        use-separate-thread-pools: true

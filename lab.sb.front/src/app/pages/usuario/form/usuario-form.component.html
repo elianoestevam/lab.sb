@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-md-12">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <nb-card>
+                <nb-card-header>{{acao}}</nb-card-header>
+                <nb-card-body>
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="nome" class="label">Nome</label>
+                                <input type="text"
+                                    [status]="f.nome.dirty || submitted ? (f.nome.errors  ? 'danger' : 'success') : ''"
+                                    formControlName="nome" [(ngModel)]="usuario.nome" nbInput fullWidth id="nome"
+                                    placeholder="Nome">
+                                <ng-container *ngIf="submitted && f.nome.errors">
+                                    <p class="caption status-danger" *ngIf="f.nome.errors.required">
+                                        Informe o nome!
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="username" class="label">Login</label>
+                                <input type="text"
+                                    [status]="f.username.dirty || submitted ? (f.username.errors  ? 'danger' : 'success') : ''"
+                                    formControlName="username" [(ngModel)]="usuario.username" nbInput fullWidth id="username"
+                                    placeholder="Login">
+                                <ng-container *ngIf="submitted && f.username.errors">
+                                    <p class="caption status-danger" *ngIf="f.username.errors.required">
+                                        Informe o login!
+                                    </p>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="password" class="label">Senha</label>
+                                <input type="password" formControlName="password" [(ngModel)]="password" nbInput fullWidth id="password"
+                                    placeholder="Senha">
+                            </div>
+                        </div>
+
+                    </div>
+                </nb-card-body>
+            </nb-card>
+            <div class="buttons-row">
+                <button (click)="voltar()" type="button" nbButton outline>
+                    Voltar
+                </button>
+                <button type="submit" status="success" nbButton>Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

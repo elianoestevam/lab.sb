@@ -1,0 +1,27 @@
+INSERT INTO lab_sb.oauth_client_details (client_id, client_secret, web_server_redirect_uri, scope, access_token_validity, refresh_token_validity, resource_ids, authorized_grant_types, additional_information) 
+VALUES ('lab.sb', '{bcrypt}$2a$10$gPhlXZfms0EpNHX0.HHptOhoFD1AoxSr/yUIdTqA8vtjeP4zi0DDu', 'http://localhost:8080/code', 'READ,WRITE', '3600', '10000', 'inventory,payment,microservice', 'authorization_code,password,refresh_token,implicit', '{}');
+-- client_id: lab.sb 
+-- client_secret: pin
+
+ INSERT INTO lab_sb.permissao (nome) VALUES
+ ('create_profile'),
+ ('read_profile'),
+ ('update_profile'),
+ ('delete_profile');
+
+ INSERT INTO lab_sb.funcao (nome) VALUES ('admin'),('editor'),('operator');
+
+ INSERT INTO lab_sb.permissao_funcao (permissao_id, funcao_id) VALUES
+     (1,1), 
+     (2,1), 
+     (3,1), 
+     (4,1), 
+     (2,2),   
+     (3,2),   
+     (2,3);  
+
+ insert into lab_sb.usuario (id, username,password, nome, email, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked) VALUES ('1', 'admin','{bcrypt}$2a$10$E4uBjpQMYBe4NoJ9YrAkve8LOSheK2.D3eRtyvKU62WOS1GLdfYte', 'Admin', 'admin@gmail.com', '1', '1', '1', '1');
+ -- username: admin
+ -- passowrd: 123456
+
+INSERT INTO lab_sb.funcao_usuario (funcao_id, usuario_id) VALUES  (1, 1);

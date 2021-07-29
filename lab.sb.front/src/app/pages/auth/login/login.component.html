@@ -1,0 +1,48 @@
+<nb-layout>
+  <nb-layout-column>
+
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="warning" nbSpinnerSize="giant">
+      <nb-card-body style="display: block;width: 100%; margin: auto;max-width: 35rem;">
+        <h1 id="title" style="margin-top: 0;margin-bottom: 0.75rem;text-align: center;" class="title">
+          Lab SpringBoot</h1>
+        <p class="sub-title">Olá! Entre com seus dados de acesso.</p>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="username" class="label">Login</label>
+            <input type="username" formControlName="username" [(ngModel)]="user.username"
+              [status]="f.username.dirty ? (f.username.invalid  ? 'danger' : 'success') : ''" nbInput fullWidth id="username"
+              placeholder="Login">
+
+            <ng-container *ngIf="submitted && f.username.errors">
+              <p class="caption status-danger" *ngIf="f.username.errors.required">
+                Informe o login!
+              </p>
+            </ng-container>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="label">Senha</label>
+            <input type="password" formControlName="password" [(ngModel)]="user.password" nbInput fullWidth id="password"
+              [status]="f.password.dirty ? (f.password.invalid  ? 'danger' : 'success') : ''" placeholder="Senha">
+
+            <ng-container *ngIf="submitted && f.password.errors">
+              <p class="caption status-danger" *ngIf="f.password.errors.required">
+                Informe a senha!
+              </p>
+            </ng-container>
+
+          </div>
+
+          <button type="submit" nbButton fullWidth status="success">
+            Entrar
+          </button>
+
+        </form>
+
+      </nb-card-body>
+      <nb-card-footer>Lab SpringBoot v1.0.0.0</nb-card-footer>
+    </nb-card>
+  </nb-layout-column>
+</nb-layout>
